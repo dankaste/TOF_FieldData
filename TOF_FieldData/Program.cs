@@ -15,7 +15,7 @@ namespace TOF_FieldData
                 if (file.Contains(".zip"))
                 {
                     Console.WriteLine($"Extracting file {file}");
-
+                    //add a comment
                     ZipFile.ExtractToDirectory(file, exportDir);
                 }
             }
