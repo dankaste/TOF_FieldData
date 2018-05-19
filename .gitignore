@@ -8,9 +8,9 @@
 \.vs/TOF_FieldData/xs/sqlite3/storage\.ide-wal
 
 \.vs/TOF_FieldData/xs/UserPrefs\.xml
-
+\.vs
 bin/
-
+UpgradeLog.htm
 .ds_store
 
 *.cache
