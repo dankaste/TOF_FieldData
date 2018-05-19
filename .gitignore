@@ -9,6 +9,12 @@
 
 \.vs/TOF_FieldData/xs/UserPrefs\.xml
 
+bin/
+
+.ds_store
+
 *.cache
 
 TOF_FieldData/obj/
+
+TestData/
