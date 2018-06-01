@@ -5,11 +5,10 @@ namespace TOF_FieldData
 {
     public class Device
     {
-        private String deviceName;
-        private String petGantrySerialNumber;
-        private String systemSerialNumber;
+        public String petGantrySerialNumber { get; set; }
+        public String systemSerialNumber { get; set; }
 
-        private List<QcResult> qcResults = new List<QcResult>();
+        public IEnumerable<QcResult> qcResults { get; set; }
 
         public Device()
         {
