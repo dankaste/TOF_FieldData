@@ -19,6 +19,7 @@ namespace TOF_FieldData
              || n.PropertyType == typeof(byte)
              || n.PropertyType == typeof(decimal)
              || n.PropertyType == typeof(int)
+             || n.PropertyType == typeof(double)
              || n.PropertyType == typeof(DateTime)
              || n.PropertyType == typeof(DateTime?));
             using (var sw = new StringWriter())
