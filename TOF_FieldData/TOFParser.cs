@@ -45,7 +45,7 @@ namespace TOF_FieldData
 
         private static IEnumerable<QcResult> GetQCResults( string dir ){
             var qcResultFiles = Directory.GetFiles(dir, "qcResults*.log",SearchOption.AllDirectories);
-            return qcResultFiles.Select((fileName) => new QcResult(fileName));
+            return qcResultFiles.Select((fileName) => new QcResult(fileName)).ToList();
         }
     }
 }
