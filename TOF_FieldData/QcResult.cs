@@ -11,14 +11,14 @@ namespace TOF_FieldData
 
         private List<string> fileLines;
 
-        private bool pmtGainCalibrationPassed;
+        public bool PmtGainCalibrationPassed { get; set; }
 
         public QcResult(string filePath)
         {
             fileLines = new List<string>(File.ReadAllLines(filePath));
             ReadPMTGainCalibration();
             logger.Log($"Found QCResult {filePath}");
-            logger.Log($"PMT Gain Calibration Passed: {pmtGainCalibrationPassed}");
+            logger.Log($"PMT Gain Calibration Passed: {PmtGainCalibrationPassed}");
         }
 
         private void ReadPMTGainCalibration(){
@@ -37,7 +37,7 @@ namespace TOF_FieldData
             if (startIndex != -1 && fileLines.Count >= startIndex + 14)
             {
                 var sectionLines = fileLines.GetRange(startIndex, 14);
-                pmtGainCalibrationPassed = sectionLines[0].Contains("PASSED");
+                PmtGainCalibrationPassed = sectionLines[0].Contains("PASSED");
             }
         }
     }

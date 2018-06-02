@@ -37,10 +37,19 @@ namespace TOF_FieldData
                            $"SerialNumber: {serialNumber}");
                 devices.Add(new Device
                 {
-                    systemSerialNumber = serialNumber,
-                    qcResults = GetQCResults(directoryPath)
+                    SystemSerialNumber = serialNumber,
+                    QCResults = GetQCResults(directoryPath)
                 });
             }
+
+            devices.ForEach(d => d.Build());
+
+            var output = ReportGenerator.GenerateReport(devices);
+            var outputFileName = $"{dataDir}/output.csv";
+            if(File.Exists(outputFileName)){
+                File.Move( outputFileName, $"{outputFileName}_Backup{DateTime.Now.ToFileTime()}");
+            }
+            File.WriteAllText( outputFileName, output);
         }
 
         private static IEnumerable<QcResult> GetQCResults( string dir ){
