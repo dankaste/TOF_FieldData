@@ -1,5 +1,5 @@
 ﻿using System;
-namespace TOF_FieldData
+namespace Parsers
 {
     public class Logger
     {

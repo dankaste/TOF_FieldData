@@ -4,15 +4,21 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace TOF_FieldData
+namespace Parsers
 {
-    public class TOFParser
+    public class Acq_TH_Parser
     {
-        public TOFParser()
+		private List<DateTime> dates;
+
+        public Acq_TH_Parser()
         {
         }
 
-        public void Parse( string dataDir ){
+        public void Parse( string dataDir, string startDate, string endDate ){
+
+			DateTime.Parse(startDate);
+			DateTime.Parse(endDate);
+
             var exportDir = $@"{dataDir}/Unzipped";
             var logger = Logger.Instance;
 
@@ -52,9 +58,13 @@ namespace TOF_FieldData
             File.WriteAllText( outputFileName, output);
         }
 
-        private static IEnumerable<QcResult> GetQCResults( string dir ){
-            var qcResultFiles = Directory.GetFiles(dir, "qcResults*.log",SearchOption.AllDirectories);
-            return qcResultFiles.Select((fileName) => new QcResult(fileName)).ToList();
+        private static IEnumerable<QcResult> GetAcqFiles( List<DateTime> dates, string dir ){
+            var acqFiles = Directory.GetFiles(dir, "acqhealth*", SearchOption.AllDirectories).Where( file =>
+			{
+				return dates.Exists(date => file.Contains(date.ToString("yyyy-MM-DD")));
+			});
+			
+			return acqFiles.Select((fileName) => new AcqFile(fileName)).ToList();
         }
     }
 }

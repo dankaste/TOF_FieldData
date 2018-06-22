@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TOF_FieldData
+namespace Parsers
 {
     public class Device
     {
